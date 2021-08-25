@@ -153,6 +153,11 @@ void rotorThrustTorque(float *thrustTorqueDers, float delta, float Va, uint8_t r
             VTOL_RHO * pow(Omega_op, 2) * pow(D_prop, 4) * C_T_der / pow(2 * M_PI, 2); // thrust derivative
     thrustTorqueDers[3] = VTOL_RHO * Omega_op * Omega_op_der * pow(D_prop, 5) * C_Q / (2 * pow(M_PI, 2)) +
             VTOL_RHO * pow(Omega_op, 2) * pow(D_prop, 5) * C_Q_der / pow(2 * M_PI, 2); // torque derivative
+    // Negates torque moment for left rotor to account for its CW direction of rotation
+    if (rotorNum == CA_ROTOR_LEFT) {
+        thrustTorqueDers[1] *= -1;
+        thrustTorqueDers[3] *= -1;
+    }
 }
 
 /**
