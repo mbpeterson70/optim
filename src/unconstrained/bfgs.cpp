@@ -23,6 +23,7 @@
  */
 
 #include "optim.hpp"
+#include <functional>
 
 // [OPTIM_BEGIN]
 optimlib_inline
